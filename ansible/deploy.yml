@@ -1,0 +1,37 @@
+---
+- hosts: all
+  become: true
+  gather_facts: false
+  remote_user: ubuntu
+  vars:
+    ansible_host_key_checking: false
+  tasks:
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    # - name: Add Docker Repository
+    #   apt_repository:
+    #     repo: deb https://download.docker.com/linux/ubuntu jammy stable
+    #     state: present
+
+    # - name: Update apt and install docker
+    #   apt:
+    #     name: "{{ packages }}"
+    #     state: latest
+    #     update_cache: true
+    #   vars:
+    #     packages:
+    #       - docker-ce
+    #       - docker-ce-cli
+    #       - containerd.io
+    #       - docker-compose-plugin
+
+    # - name: Copy docker-compose
+    #   copy:
+    #     src: ../docker-compose.yml
+    #     dest: ~/docker-compose.yml
+
+    # - name: Docker compose run
+    #   shell: docker compose up -d
