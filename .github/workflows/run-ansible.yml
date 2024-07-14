@@ -21,3 +21,5 @@ jobs:
           playbook: deploy.yml
           directory: ./ansible
           key: ${{secrets.AWS_PEM_KEY}}
+          options: |
+            --inventory inventory.yml
