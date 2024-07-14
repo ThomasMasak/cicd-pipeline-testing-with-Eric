@@ -16,5 +16,5 @@ jobs:
         uses: dawidd6/action-ansible-playbook@v2
         with:
           playbook: deploy.yml
-          directory: ./
+          directory: ${{github.path}}/ansible
           key: ${{secrets.AWS_PEM_KEY}}
