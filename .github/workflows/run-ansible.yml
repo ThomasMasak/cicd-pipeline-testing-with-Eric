@@ -1,0 +1,16 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ansible:
+    name: "Run Ansible"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: deploy.yml
+          directory: ./ansible
+          key: ${{secrets.AWS_PEM_KEY}}
