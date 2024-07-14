@@ -1,4 +1,3 @@
-.id_rsa
 .terraform.lock.hcl
 
 # Local .terraform directories
