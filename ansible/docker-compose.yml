@@ -1,6 +1,0 @@
-services:
-  ansible:
-    build: .
-  
-    volumes:
-      - ~/Projects/ec2test:~/

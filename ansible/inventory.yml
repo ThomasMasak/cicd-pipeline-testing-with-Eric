@@ -1,4 +1,4 @@
 ec2:
   hosts:
     test_host:
-      ansible_host: 15.168.11.195
+      ansible_host: 13.208.206.4

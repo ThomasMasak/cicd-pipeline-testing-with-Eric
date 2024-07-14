@@ -6,32 +6,59 @@
   vars:
     ansible_host_key_checking: false
   tasks:
-    - name: Add Docker GPG apt Key
-      apt_key:
+    - name: Update and upgrade all packages to the latest version
+      ansible.builtin.apt:
+        update_cache: true
+        upgrade: dist
+        cache_valid_time: 3600
+
+    - name: Install required packages
+      ansible.builtin.apt:
+        pkg:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg
+          - software-properties-common
+
+    - name: Create directory for Docker's GPG key
+      ansible.builtin.file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: '0755'
+
+    - name: Add Docker's official GPG key
+      ansible.builtin.apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
+        keyring: /etc/apt/keyrings/docker.gpg
         state: present
 
-    # - name: Add Docker Repository
-    #   apt_repository:
-    #     repo: deb https://download.docker.com/linux/ubuntu jammy stable
-    #     state: present
+    - name: Add Docker repository
+      ansible.builtin.apt_repository:
+        repo: >-
+          deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable
+        filename: docker
+        state: present
 
-    # - name: Update apt and install docker
-    #   apt:
-    #     name: "{{ packages }}"
-    #     state: latest
-    #     update_cache: true
-    #   vars:
-    #     packages:
-    #       - docker-ce
-    #       - docker-ce-cli
-    #       - containerd.io
-    #       - docker-compose-plugin
+    - name: Update apt and install docker
+      apt:
+        name: "{{ packages }}"
+        state: present
+        update_cache: true
+      vars:
+        packages:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
 
-    # - name: Copy docker-compose
-    #   copy:
-    #     src: ../docker-compose.yml
-    #     dest: ~/docker-compose.yml
+    - name: Copy docker-compose
+      copy:
+        src: ../docker-compose.yml
+        dest: /home/ubuntu/docker-compose.yml
 
-    # - name: Docker compose run
-    #   shell: docker compose up -d
+    - name: Docker compose run
+      shell:
+        chdir: /home/ubuntu
+        cmd: docker compose up -d
