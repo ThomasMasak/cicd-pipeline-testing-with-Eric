@@ -5,6 +5,7 @@ on:
     paths:
       - ansible/**
       - src/**
+      - docker-compose.yml
       - .github/workflows/run-ansible.yml
 
 jobs:
