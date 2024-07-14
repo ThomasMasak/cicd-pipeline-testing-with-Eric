@@ -5,6 +5,7 @@ on:
     paths:
       - ansible/**
       - src/**
+      - .github/workflows/run-ansible.yml
 
 jobs:
   ansible:

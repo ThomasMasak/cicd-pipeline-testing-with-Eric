@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - infra/**
+      - .github/workflows/terraform-apply.yml
 
 env:
   TF_CLOUD_ORGANIZATION: "03thomasmasak-testing"
