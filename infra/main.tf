@@ -5,6 +5,14 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+  cloud {
+    organization = "03thomasmasak-testing"
+    workspaces {
+      name = "ec2-test"
+    }
+  }
+
 }
 
 # Configure the AWS Provider
