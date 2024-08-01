@@ -7,10 +7,9 @@ name: Docker image push to ECR
 #       - completed
 
 on:
-  workflow_run:
-    workflows: [build-pr]
-    types:
-      - completed
+  push:
+    branches:
+      - feature/docker-and-push-ecr
 
 jobs:
   docker:
