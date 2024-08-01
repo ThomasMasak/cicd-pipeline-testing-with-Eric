@@ -30,7 +30,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: 211125448588.dkr.ecr.ap-northeast-3.amazonaws.com/user_service
+        ECR_REPOSITORY: user_service
         IMAGE_TAG: latest
       run: |
         # Build a docker container and push it to ECR 
