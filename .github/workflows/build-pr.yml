@@ -1,16 +1,20 @@
-name: Docker image build and push to ECR
+name: Docker image build
+
+# on:
+#   workflow_run:
+#     workflows: [Terraform Plan]
+#     types:
+#       - completed
 
 on:
   push:
-    branches: [ feature/docker-and-push-ecr ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - feature/docker-and-push-ecr
 
 jobs:
   docker:
-    name: Deploy
+    name: Build
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -26,15 +30,14 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
 
-    - name: Build, tag, and push image to Amazon ECR
+    - name: Build and tag image
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: user_service
         IMAGE_TAG: latest
       run: |
-        # Build a docker container and push it to ECR 
+        # Build docker image
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        echo "Pushing image to ECR..."
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "Building image..."
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
