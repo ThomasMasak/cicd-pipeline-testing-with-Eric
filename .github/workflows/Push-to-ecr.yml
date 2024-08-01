@@ -8,7 +8,7 @@ name: Docker image push to ECR
 
 on:
   workflow_run:
-    workflows: [Docker image build]
+    workflows: [build-pr]
     types:
       - completed
 
