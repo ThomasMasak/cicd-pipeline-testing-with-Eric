@@ -1,15 +1,10 @@
 name: Docker image push to ECR
 
-# on:
-#   workflow_run:
-#     workflows: [Terraform Apply]
-#     types:
-#       - completed
-
 on:
-  push:
-    branches:
-      - feature/docker-and-push-ecr
+  workflow_run:
+    workflows: [Terraform Apply]
+    types:
+      - completed
 
 jobs:
   docker:
