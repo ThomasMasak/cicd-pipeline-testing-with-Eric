@@ -1,9 +1,7 @@
 name: Docker image build test
 
 on:
-  push:
-    branches:
-      - feature/docker-and-push-ecr
+  pull_request:
 
 jobs:
   docker:
