@@ -42,7 +42,7 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         echo "IMAGE $IMAGE_TAG is pushed to $ECR_REGISTRY/$ECR_REPOSITORY"
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        aws lambda update-function-code --function-name example-lambda --image-uri $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        aws lambda update-function-code --function-name user_service --image-uri $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "image_tag=$IMAGE_TAG" 
         echo "full_image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
         
