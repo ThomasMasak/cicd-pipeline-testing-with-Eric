@@ -1,15 +1,10 @@
 name: Build and push to ECR
 
-# on:
-#   workflow_run:
-#     workflows: [Terraform Apply]
-#     types:
-#       - completed
-
 on:
-  push:
-    branches:
-      - feature/lambda
+  workflow_run:
+    workflows: [Terraform Apply]
+    types:
+      - completed
 
 jobs:
   docker:
