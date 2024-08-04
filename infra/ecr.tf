@@ -8,9 +8,9 @@ resource "aws_ecr_repository" "user_service" {
     scan_on_push = false
   }
   
-  # lifecycle {
-  #     ignore_changes = all
-  #   }
+  lifecycle {
+      ignore_changes = all
+    }
 
   provisioner "local-exec" {
     command = <<-EOF
