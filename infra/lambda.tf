@@ -1,26 +1,19 @@
-data "aws_ecr_repository" "user_service" {
-  name = "user_service"
-}
-
 resource "aws_lambda_function" "user_service" {
-  depends_on = [
-    null_resource.ecr_image,
-  ]
 
   function_name = "user_service"
   package_type  = "Image"
-  image_uri     = "${aws_ecr_repository.user_service.repository_url}:latest"
+  image_uri     = "public.ecr.aws/lambda/python:3.12"
   role          = aws_iam_role.lambda_user_service.arn
   publish       = true
 
   memory_size = 128
   timeout     = 28
 
-  # lifecycle {
-  #   ignore_changes = [
-  #     image_uri, last_modified
-  #   ]
-  # }
+  lifecycle {
+    ignore_changes = [
+      image_uri, last_modified
+    ]
+  }
 }
 
 resource "aws_cloudwatch_log_group" "lambda_user_service" {
