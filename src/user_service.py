@@ -29,4 +29,4 @@
 # }
 
 def lambda_handler(event, context):
-    return 'Hello AWS Lambda'
+    return 'Hello AWS Lambda, try number two'
