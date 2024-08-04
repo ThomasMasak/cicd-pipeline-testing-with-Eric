@@ -4,7 +4,7 @@ data "aws_ecr_repository" "user_service" {
 
 resource "aws_lambda_function" "user_service" {
   depends_on = [
-    null_resource.image_ecr,
+    null_resource.ecr_image,
   ]
 
   function_name = "user_service"

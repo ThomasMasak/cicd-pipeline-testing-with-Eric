@@ -9,8 +9,16 @@ resource "aws_ecr_repository" "user_service" {
 
 resource "null_resource" "ecr_image" {
   triggers = {
-    python_file = md5(file("../src/user_service.py"))
-    docker_file = md5(file("../Dockerfile"))
+    python_file = md5(file("${path.module}/../src/user_service.py"))
+    docker_file = md5(file("${path.module}/../Dockerfile"))
+  }
+  provisioner "local-exec" {
+    command = <<EOF
+      aws ecr get-login-password --region ap-northeast-3 | docker login --username AWS --password-stdin 211125448588.dkr.ecr.ap-northeast-3.amazonaws.com
+      cd ${path.module}/../
+      docker build -f Dockerfile -t ${aws_ecr_repository.user_service.repository_url}:latest .
+      docker push ${aws_ecr_repository.user_service.repository_url}:latest
+    EOF
   }
 }
 
