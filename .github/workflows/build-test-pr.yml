@@ -15,5 +15,5 @@ jobs:
       id: build-image
       run: |
         # Build docker image
-        docker build .
         echo "Building image..."
+        docker build .
