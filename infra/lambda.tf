@@ -2,7 +2,7 @@ resource "aws_lambda_function" "user_service" {
 
   function_name = "user_service"
   package_type  = "Image"
-  image_uri     = "public.ecr.aws/lambda/python:3.12"
+  image_uri     = "${aws_ecr_repository.user_service.repository_url}:latest"
   role          = aws_iam_role.lambda_user_service.arn
   publish       = true
 
