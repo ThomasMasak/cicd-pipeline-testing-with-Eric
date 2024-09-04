@@ -49,11 +49,11 @@ resource "aws_iam_role_policy" "dynamodb-lambda-policy" {
   name   = "dynamodb-lambda-policy"
   role   = aws_iam_role.lambda_user_service.id
   policy = data.aws_iam_policy_document.dynamodb_lambda_policy.json
-  }
+}
 
 data "aws_iam_policy_document" "dynamodb_lambda_policy" {
   statement {
-    actions = ["dynamodb:*"]
+    actions   = ["dynamodb:*"]
     effect    = "Allow"
     resources = [aws_dynamodb_table.user_profiles.arn]
   }
@@ -62,9 +62,9 @@ data "aws_iam_policy_document" "dynamodb_lambda_policy" {
 ### AppSync Wiring to Lambda ###
 
 resource "aws_iam_role" "appsync_user_service" {
-  name = "hello_world_service_role"
+  name = "appsync-user-service-role"
 
-  assume_role_policy = data.aws_iam_policy_document.hello_world_service.json
+  assume_role_policy = data.aws_iam_policy_document.appsync_user_service.json
 }
 
 data "aws_iam_policy_document" "appsync_user_service" {
@@ -80,18 +80,58 @@ data "aws_iam_policy_document" "appsync_user_service" {
   }
 }
 
-data "aws_iam_policy_document" "hello_world" {
+data "aws_iam_policy_document" "appsync_user_service_doc" {
   statement {
     sid = "1"
     actions = [
       "lambda:InvokeFunction"
     ]
-    resources = [aws_lambda_function.hello_world.arn]
+    resources = [aws_lambda_function.user_service.arn]
   }
 }
 
-resource "aws_iam_role_policy" "hello_world" {
-  name   = "hello_world_role_policy"
-  role   = aws_iam_role.hello_world.id
-  policy = data.aws_iam_policy_document.hello_world.json
+resource "aws_iam_role_policy" "appsync_user_service" {
+  name   = "appsync_user_service_role_policy"
+  role   = aws_iam_role.appsync_user_service.id
+  policy = data.aws_iam_policy_document.appsync_user_service_doc.json
+}
+
+### AppSync CloudWatch ###
+
+data "aws_iam_policy_document" "graph_log_role" {
+  statement {
+    sid = "1"
+    actions = [
+      "sts:AssumeRole",
+    ]
+    principals {
+      type        = "Service"
+      identifiers = ["appsync.amazonaws.com"]
+    }
+  }
+
+}
+
+resource "aws_iam_role" "graph_log_role" {
+  name = "graph_log_role"
+
+  assume_role_policy = data.aws_iam_policy_document.graph_log_role.json
+}
+
+data "aws_iam_policy_document" "graph_log_policy" {
+  statement {
+    sid = "1"
+    actions = [
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents"
+    ]
+    resources = ["*"]
+  }
+}
+
+resource "aws_iam_role_policy" "graph_log" {
+  name   = "graph_log_policy"
+  role   = aws_iam_role.graph_log_role.id
+  policy = data.aws_iam_policy_document.graph_log_policy.json
 }

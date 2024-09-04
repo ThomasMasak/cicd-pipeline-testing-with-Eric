@@ -1,0 +1,25 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type UserResponse {
+    ID: String
+    firstName: String
+    lastName: String
+}
+
+type AcceptanceResponse {
+    statusCode: Int
+    message: String
+}
+
+type Query {
+    getUser(ID: String!): UserResponse
+}
+
+type Mutation {
+    createUser(firstName: String!, lastName: String!): UserResponse
+    updateUser(ID: String!, firstName: String!, lastName: String!): AcceptanceResponse
+    deleteUser(ID: String!): AcceptanceResponse
+}
