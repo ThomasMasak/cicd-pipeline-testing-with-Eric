@@ -1,7 +1,7 @@
 resource "aws_appsync_graphql_api" "main" {
   authentication_type = "AWS_IAM"
   name                = "terraforming-appsync"
-  schema              = file("${path.module}/../schema.graphql")
+  schema              = file("${path.module}/schema.graphql")
   
   log_config {
     cloudwatch_logs_role_arn = aws_iam_role.graph_log_role.arn

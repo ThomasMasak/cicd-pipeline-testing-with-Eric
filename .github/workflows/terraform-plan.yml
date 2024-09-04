@@ -1,12 +1,7 @@
 name: "Terraform Plan"
 
-# on:
-#   pull_request:
-
 on:
-  push:
-    branches:
-      - Feature/AppSync
+  pull_request:
 
 env:
   TF_CLOUD_ORGANIZATION: "03thomasmasak-testing"
