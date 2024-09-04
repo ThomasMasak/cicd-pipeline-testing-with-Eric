@@ -1,5 +1,6 @@
 ### Lambda ###
 
+
 resource "aws_iam_role" "lambda_user_service" {
   name               = "lambda-user-service-role"
   assume_role_policy = data.aws_iam_policy_document.lambda_user_service_assume.json
@@ -43,7 +44,9 @@ data "aws_iam_policy_document" "lambda_policy" {
   }
 }
 
+
 ### Lambda & DynamoDB ###
+
 
 resource "aws_iam_role_policy" "dynamodb-lambda-policy" {
   name   = "dynamodb-lambda-policy"
@@ -59,7 +62,9 @@ data "aws_iam_policy_document" "dynamodb_lambda_policy" {
   }
 }
 
+
 ### AppSync Wiring to Lambda ###
+
 
 resource "aws_iam_role" "appsync_user_service" {
   name = "appsync-user-service-role"
@@ -96,7 +101,9 @@ resource "aws_iam_role_policy" "appsync_user_service" {
   policy = data.aws_iam_policy_document.appsync_user_service_doc.json
 }
 
+
 ### AppSync CloudWatch ###
+
 
 data "aws_iam_policy_document" "graph_log_role" {
   statement {
