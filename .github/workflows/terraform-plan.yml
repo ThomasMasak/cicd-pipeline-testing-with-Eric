@@ -6,7 +6,7 @@ on:
 env:
   TF_CLOUD_ORGANIZATION: "03thomasmasak-testing"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
-  TF_WORKSPACE: "ec2-test"
+  TF_WORKSPACE: "ec2-test/infra"
   CONFIG_DIRECTORY: "./infra"
 
 jobs:
