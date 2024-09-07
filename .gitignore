@@ -1,4 +1,5 @@
 .terraform.lock.hcl
+.id_rsa
 
 # Local .terraform directories
 **/.terraform/*
