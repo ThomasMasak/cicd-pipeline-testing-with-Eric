@@ -1,4 +1,4 @@
-resource "aws_instance" "web3" {
+resource "aws_instance" "web" {
   ami           = "ami-0a70c5266db4a6202"
   instance_type = "t2.micro"
   key_name      = aws_key_pair.deployer.key_name
