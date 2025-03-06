@@ -1,61 +1,61 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36" version="26.1.0">
   <diagram name="Stripe Charge Flow" id="c7558073-3199-34d8-9f00-42111426c3f3">
-    <mxGraphModel dx="2085" dy="655" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="826" pageHeight="1169" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1259" dy="655" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="1">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="RBB2x46arC6A1pVJUzIH-121" value="Start: Charge Transaction" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="290" y="30" width="180" height="60" as="geometry" />
+          <mxGeometry x="325" y="30" width="180" height="60" as="geometry" />
         </mxCell>
         <mxCell id="RBB2x46arC6A1pVJUzIH-122" value="Is Payment Source a PaymentMethod?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="270" y="130" width="220" height="80" as="geometry" />
+          <mxGeometry x="280" y="110" width="270" height="100" as="geometry" />
         </mxCell>
         <mxCell id="RBB2x46arC6A1pVJUzIH-123" value="Payment Intents Flow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5d0;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="110" y="270" width="180" height="60" as="geometry" />
+          <mxGeometry x="145" y="270" width="180" height="60" as="geometry" />
         </mxCell>
         <mxCell id="RBB2x46arC6A1pVJUzIH-124" value="Call stripe.PaymentIntent.create()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5d0;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="110" y="350" width="180" height="60" as="geometry" />
+          <mxGeometry x="142" y="444" width="180" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="RBB2x46arC6A1pVJUzIH-125" value="Confirm payment intent &amp; attach PaymentMethod" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5d0;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="110" y="430" width="180" height="60" as="geometry" />
+        <mxCell id="RBB2x46arC6A1pVJUzIH-125" value="Confirm payment intent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5d0;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="142" y="533" width="180" height="60" as="geometry" />
         </mxCell>
         <mxCell id="RBB2x46arC6A1pVJUzIH-126" value="PaymentIntent Status" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="140" y="530" width="120" height="60" as="geometry" />
+          <mxGeometry x="172" y="632" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="RBB2x46arC6A1pVJUzIH-127" value="If &quot;succeeded&quot;:\ntransaction.processed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e1ff;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry y="630" width="180" height="60" as="geometry" />
+        <mxCell id="RBB2x46arC6A1pVJUzIH-127" value="If &quot;succeeded&quot; -&amp;gt;&amp;nbsp;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;transaction.processed&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e1ff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="38" y="734" width="180" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="RBB2x46arC6A1pVJUzIH-128" value="Else:\ntransaction.failed\n(set error/message)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
-          <mxGeometry x="230" y="630" width="180" height="60" as="geometry" />
+        <mxCell id="RBB2x46arC6A1pVJUzIH-128" value="Else transaction.failed +&lt;div&gt;handles error/message&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="237" y="734" width="180" height="60" as="geometry" />
         </mxCell>
         <mxCell id="RBB2x46arC6A1pVJUzIH-129" value="Legacy Charge Flow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5e1f7;strokeColor=#b854a7;" vertex="1" parent="1">
-          <mxGeometry x="510" y="270" width="180" height="60" as="geometry" />
+          <mxGeometry x="489" y="270" width="180" height="60" as="geometry" />
         </mxCell>
         <mxCell id="RBB2x46arC6A1pVJUzIH-130" value="Call stripe.Charge.create()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5e1f7;strokeColor=#b854a7;" vertex="1" parent="1">
-          <mxGeometry x="510" y="350" width="180" height="60" as="geometry" />
+          <mxGeometry x="489" y="350" width="180" height="60" as="geometry" />
         </mxCell>
         <mxCell id="RBB2x46arC6A1pVJUzIH-131" value="Charge Paid?" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="510" y="450" width="120" height="60" as="geometry" />
+          <mxGeometry x="519" y="451" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="RBB2x46arC6A1pVJUzIH-132" value="If Yes:\ntransaction.processed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e1ff;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="390" y="530" width="180" height="60" as="geometry" />
+        <mxCell id="RBB2x46arC6A1pVJUzIH-132" value="If Yes -&amp;gt; transaction.processed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e1ff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="392" y="563" width="180" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="RBB2x46arC6A1pVJUzIH-133" value="If No:\ntransaction.failed\n(set failed_reason)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
-          <mxGeometry x="610" y="530" width="180" height="60" as="geometry" />
+        <mxCell id="RBB2x46arC6A1pVJUzIH-133" value="If No -&amp;gt; transaction.failed +&lt;div&gt;print failed_reason&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="590" y="563" width="180" height="60" as="geometry" />
         </mxCell>
         <mxCell id="RBB2x46arC6A1pVJUzIH-134" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="RBB2x46arC6A1pVJUzIH-121" target="RBB2x46arC6A1pVJUzIH-122">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="380" y="90" as="targetPoint" />
+            <mxPoint x="415" y="90" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="RBB2x46arC6A1pVJUzIH-135" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="RBB2x46arC6A1pVJUzIH-122" target="RBB2x46arC6A1pVJUzIH-123">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="310" y="210" as="targetPoint" />
+            <mxPoint x="345" y="210" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="RBB2x46arC6A1pVJUzIH-136" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="RBB2x46arC6A1pVJUzIH-122" target="RBB2x46arC6A1pVJUzIH-129">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="490" y="210" as="targetPoint" />
+            <mxPoint x="525" y="210" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="RBB2x46arC6A1pVJUzIH-137" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="RBB2x46arC6A1pVJUzIH-123" target="RBB2x46arC6A1pVJUzIH-124">
@@ -67,14 +67,14 @@
         <mxCell id="RBB2x46arC6A1pVJUzIH-139" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="RBB2x46arC6A1pVJUzIH-125" target="RBB2x46arC6A1pVJUzIH-126">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="RBB2x46arC6A1pVJUzIH-140" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;endArrow=block;" edge="1" parent="1" source="RBB2x46arC6A1pVJUzIH-126" target="RBB2x46arC6A1pVJUzIH-127">
+        <mxCell id="RBB2x46arC6A1pVJUzIH-140" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;endArrow=block;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="RBB2x46arC6A1pVJUzIH-126" target="RBB2x46arC6A1pVJUzIH-127">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="150" y="590" as="targetPoint" />
+            <mxPoint x="112" y="731" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="RBB2x46arC6A1pVJUzIH-141" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;endArrow=block;" edge="1" parent="1" source="RBB2x46arC6A1pVJUzIH-126" target="RBB2x46arC6A1pVJUzIH-128">
+        <mxCell id="RBB2x46arC6A1pVJUzIH-141" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;endArrow=block;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="RBB2x46arC6A1pVJUzIH-126" target="RBB2x46arC6A1pVJUzIH-128">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="240" y="590" as="targetPoint" />
+            <mxPoint x="320" y="731" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="RBB2x46arC6A1pVJUzIH-142" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="RBB2x46arC6A1pVJUzIH-129" target="RBB2x46arC6A1pVJUzIH-130">
@@ -85,13 +85,16 @@
         </mxCell>
         <mxCell id="RBB2x46arC6A1pVJUzIH-144" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;endArrow=block;" edge="1" parent="1" source="RBB2x46arC6A1pVJUzIH-131" target="RBB2x46arC6A1pVJUzIH-132">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="470" y="490" as="targetPoint" />
+            <mxPoint x="449" y="490" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="RBB2x46arC6A1pVJUzIH-145" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;endArrow=block;" edge="1" parent="1" source="RBB2x46arC6A1pVJUzIH-131" target="RBB2x46arC6A1pVJUzIH-133">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="630" y="490" as="targetPoint" />
+            <mxPoint x="679" y="530" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="RBB2x46arC6A1pVJUzIH-147" value="Attach PaymentMethod" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5d0;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="145" y="354" width="180" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
